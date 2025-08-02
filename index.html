@@ -1,433 +1,990 @@
 <!DOCTYPE html>
-
-<html lang="en">
-
+<html lang="ar" dir="rtl">
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Payment Gateway - USDT via TRC20</title>
-
-<!-- Adding Google Fonts -->
-
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
-<style>
-
-body {
-
-margin: 0;
-
-padding: 0;
-
-font-family: 'Roboto', sans-serif;
-
-color: #fff;
-
-background-color: black;
-
-display: flex;
-
-justify-content: center;
-
-align-items: center;
-
-min-height: 100vh;
-
-}
-
-.container {
-
-text-align: center;
-
-padding: 20px;
-
-max-width: 400px;
-
-width: 100%;
-
-}
-
-h2 {
-
-font-size: 1.5em;
-
-margin: 10px 0;
-
-}
-
-.barcode-container {
-
-display: inline-block;
-
-padding: 10px;
-
-border-radius: 10px;
-
-animation: glow 2s infinite alternate;
-
-margin-bottom: 20px;
-
-}
-
-.barcode-image {
-
-width: 180px;
-
-height: auto;
-
-border-radius: 5px;
-
-}
-
-/* Glowing animation */
-
-@keyframes glow {
-
-0% { box-shadow: 0 0 10px #ff0000, 0 0 20px #ff9900, 0 0 30px #00ff00, 0 0 40px #00ccff; }
-
-50% { box-shadow: 0 0 15px #ff00ff, 0 0 25px #ffcc00, 0 0 35px #00ccff, 0 0 45px #ff0000; }
-
-100% { box-shadow: 0 0 20px #00ff00, 0 0 30px #ff9900, 0 0 40px #ff00ff, 0 0 50px #00ccff; }
-
-}
-
-.usdt-text {
-
-font-size: 1.2em;
-
-color: #ffcc00;
-
-font-weight: bold;
-
-margin: 10px 0;
-
-}
-
-.wallet-address {
-
-font-size: 1em;
-
-background: #333;
-
-padding: 8px;
-
-border-radius: 5px;
-
-display: inline-block;
-
-margin: 10px 0;
-
-}
-
-.copy-button {
-
-background-color: #007bff;
-
-color: white;
-
-border: none;
-
-padding: 5px 8px;
-
-border-radius: 5px;
-
-cursor: pointer;
-
-margin-left: 5px;
-
-font-size: 0.9em;
-
-}
-
-.copy-button:hover {
-
-background-color: #0056b3;
-
-}
-
-.input-field {
-
-margin: 10px 0;
-
-padding: 8px;
-
-width: 100%;
-
-font-size: 14px;
-
-border-radius: 5px;
-
-border: 1px solid #ccc;
-
-}
-
-.button {
-
-padding: 10px 15px;
-
-background-color: #28a745;
-
-color: white;
-
-border: none;
-
-border-radius: 5px;
-
-font-size: 14px;
-
-cursor: pointer;
-
-width: 100%;
-
-}
-
-.button:hover {
-
-background-color: #218838;
-
-}
-
-.timer {
-
-font-size: 1em;
-
-color: #d9534f;
-
-margin: 10px 0;
-
-}
-
-/* Message Styling */
-
-.message {
-
-background-color: #007bff;
-
-padding: 10px;
-
-border-radius: 5px;
-
-color: white;
-
-font-size: 14px;
-
-margin-top: 10px;
-
-display: none;
-
-}
-
-/* Responsive adjustments for smaller screens */
-
-@media (max-width: 600px) {
-
-.container {
-
-padding: 15px;
-
-}
-
-.barcode-image {
-
-width: 150px;
-
-}
-
-h2 {
-
-font-size: 1.2em;
-
-}
-
-.usdt-text {
-
-font-size: 1em;
-
-}
-
-.wallet-address {
-
-font-size: 0.9em;
-
-padding: 6px;
-
-}
-
-.copy-button, .button {
-
-font-size: 0.9em;
-
-padding: 8px;
-
-}
-
-.timer {
-
-font-size: 0.9em;
-
-}
-
-.message {
-
-font-size: 0.9em;
-
-padding: 8px;
-
-}
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="container">
-
-<!-- Barcode Image with Glowing Border -->
-
-<div class="barcode-container">
-
-<img src="https://ugc.production.linktr.ee/94106f98-238c-40dd-9bad-907923c1dbcd_qr-code.png?io=true&size=avatar-v3_0" alt="Wallet Barcode" class="barcode-image">
-
-</div>
-<script>
-    // Function to send a notification to the Telegram bot
-    function sendTelegramNotification() {
-        const botToken = "7652357474:AAG-lvX-g5VwNQm7GPXfFTqM7xIOfyZ8lJY"; // ضع التوكن الخاص بالبوت هنا
-        const chatId = "7073222421"; // ضع معرف الدردشة (Chat ID) هنا
-        const message = "📢 1تم الدخول إلى بوابة الدفع بواسطة مستخدم جديد!";
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Visa - بطاقات فيزا مشفرة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #00ff00;
+            --accent: #ff0000;
+            --text: #ffffff;
+            --bg-dark: #121212;
+            --bg-light: #222222;
+            --blue: #0066ff;
+            --purple: #9900ff;
+            --yellow: #ffcc00;
+        }
         
-        // Telegram API URL for sending a message
-        const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
-
-        // Sending the request
-        fetch(url)
-            .then(response => {
-                if (response.ok) {
-                    console.log("Notification sent to Telegram.");
-                } else {
-                    console.error("Failed to send notification.");
-                }
-            })
-            .catch(error => {
-                console.error("Telegram connection error:", error);
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            font-family: 'Roboto Mono', monospace;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(0, 255, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 0, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            border-bottom: 1px solid var(--secondary);
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            color: var(--accent);
+            text-shadow: 0 0 15px var(--accent);
+            margin-bottom: 10px;
+            animation: glow-red 2s infinite alternate;
+        }
+        
+        .tagline {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        
+        .products {
+            padding: 60px 0;
+        }
+        
+        .logo-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .animated-logo {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto;
+            position: relative;
+            animation: float 4s ease-in-out infinite, glow-pulse 3s infinite alternate;
+        }
+        
+        .animated-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(0, 255, 0, 0.7));
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--secondary);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: var(--secondary);
+            margin: 15px auto 0;
+            box-shadow: 0 0 10px var(--secondary);
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: var(--bg-light);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 1px solid var(--bg-light);
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 255, 0, 0.2);
+            border-color: var(--secondary);
+        }
+        
+        .product-image {
+            height: 180px;
+            background-color: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            max-width: 90%;
+            max-height: 90%;
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .features-list {
+            margin: 15px 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        
+        .features-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-right: 20px;
+        }
+        
+        .features-list li:before {
+            content: "•";
+            position: absolute;
+            right: 0;
+            color: var(--secondary);
+        }
+        
+        .feature-green {
+            color: var(--secondary);
+        }
+        
+        .feature-red {
+            color: var(--accent);
+        }
+        
+        .feature-blue {
+            color: var(--blue);
+        }
+        
+        .feature-purple {
+            color: var(--purple);
+        }
+        
+        .feature-yellow {
+            color: var(--yellow);
+        }
+        
+        .btn {
+            display: block;
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent);
+        }
+        
+        /* نافذة الدفع */
+        .payment-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .payment-content {
+            background-color: var(--bg-light);
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 500px;
+            border: 1px solid var(--secondary);
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .payment-title {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--secondary);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+        
+        .payment-amount {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #444;
+            font-size: 1.2rem;
+        }
+        
+        .qr-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .qr-box {
+            display: inline-block;
+            text-align: center;
+            margin: 0 10px;
+        }
+        
+        .qr-code {
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            max-width: 250px;
+            margin: 0 auto 15px;
+        }
+        
+        .qr-code img {
+            max-width: 100%;
+        }
+        
+        .qr-label {
+            color: var(--secondary);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 10px;
+        }
+        
+        .wallet-address-container {
+            background-color: var(--bg-dark);
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            border: 1px dashed var(--secondary);
+            position: relative;
+        }
+        
+        .wallet-address {
+            font-family: 'Roboto Mono', monospace;
+            word-break: break-all;
+            text-align: center;
+            padding-right: 30px;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--secondary);
+            color: var(--primary);
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background-color: var(--accent);
+        }
+        
+        .network-info {
+            text-align: center;
+            color: var(--secondary);
+            margin: 20px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+        }
+        
+        .payment-steps {
+            margin-top: 30px;
+        }
+        
+        .step {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #444;
+        }
+        
+        .step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: var(--secondary);
+            color: var(--primary);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .step-title {
+            display: inline-block;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        .payment-form {
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--secondary);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--bg-dark);
+            border: 1px solid #444;
+            border-radius: 4px;
+            color: var(--text);
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        .verify-btn {
+            background-color: var(--accent);
+            color: var(--text);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            margin-top: 15px;
+        }
+        
+        .verify-btn:hover {
+            background-color: #ff3333;
+            box-shadow: 0 0 15px var(--accent);
+        }
+        
+        .loading {
+            text-align: center;
+            margin: 30px 0;
+            display: none;
+        }
+        
+        .loading-spinner {
+            border: 4px solid var(--bg-dark);
+            border-top: 4px solid var(--secondary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        .loading-text {
+            color: var(--secondary);
+        }
+        
+        .code-display {
+            background-color: var(--bg-dark);
+            border: 1px solid var(--secondary);
+            border-radius: 4px;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: 'Roboto Mono', monospace;
+            overflow-x: auto;
+            display: none;
+        }
+        
+        .code-line {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+        
+        .payment-result {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .payment-error {
+            background-color: rgba(255, 0, 0, 0.2);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+        }
+        
+        footer {
+            background-color: var(--bg-dark);
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 60px;
+            border-top: 1px solid var(--bg-light);
+        }
+        
+        /* زر التلجرام العائم */
+        .telegram-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+        
+        .telegram-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: #0088cc;
+            border-radius: 50%;
+            color: white;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .telegram-btn:hover {
+            background-color: #0077b5;
+            transform: scale(1.1);
+        }
+        
+        /* نافذة التلجرام المنبثقة */
+        .telegram-popup {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            left: 30px;
+            background-color: var(--bg-light);
+            border: 1px solid var(--secondary);
+            border-radius: 10px;
+            padding: 15px;
+            width: 250px;
+            z-index: 101;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .telegram-popup.show {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        
+        .telegram-popup h3 {
+            color: var(--secondary);
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .telegram-popup p {
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .telegram-popup .close-popup {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .telegram-popup .telegram-link {
+            display: block;
+            background-color: #0088cc;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .telegram-popup .telegram-link:hover {
+            background-color: #0077b5;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 136, 204, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 136, 204, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 136, 204, 0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes glow-red {
+            from {
+                text-shadow: 0 0 5px var(--accent);
+            }
+            to {
+                text-shadow: 0 0 15px var(--accent), 0 0 20px var(--accent);
+            }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes glow-pulse {
+            0% { filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.7)); }
+            50% { filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.9)); }
+            100% { filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.7)); }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-content {
+                margin: 20px;
+                padding: 20px;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .qr-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .animated-logo {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .telegram-float {
+                bottom: 20px;
+                left: 20px;
+            }
+            
+            .telegram-popup {
+                left: 20px;
+                width: calc(100% - 40px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">DARK VISA</div>
+            <div class="tagline"> بطاقات فيزا  Dark Web </div>
+        </div>
+    </header>
+    
+<section class="products">
+    <div class="container">
+        <div class="logo-container">
+            <div class="animated-logo">
+                <img src="https://i.postimg.cc/V6K1bxJm/Picsart-25-08-01-18-15-30-026.png" alt="Dark Visa Logo">
+            </div>
+        </div>
+        
+        <h2 class="section-title">اختر بطاقتك</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/cHXkmZ7k/Picsart-25-08-01-16-39-36-850.png" alt="بطاقة فيزا أساسية">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">بطاقة أمريكية (VISA)</h3>
+                    <div class="product-price">100$ | رصيد 7500$</div>
+                    <ul class="features-list">
+                        <li><span class="feature-green">الرصيد: 7500$ (غير قابل للتجديد)</span></li>
+                        <li><span class="feature-red">دولة الإصدار: الولايات المتحدة</span></li>
+                        <li><span class="feature-blue">نوع البطاقة: فيزا كلاسيك</span></li>
+                        <li><span class="feature-purple">تاريخ الانتهاء: 09/2025</span></li>
+                        <li><span class="feature-yellow">CVV: متضمن + معلومات كاملة</span></li>
+                        <li><span class="feature-green">بدون OTP - لا تحتاج للتحقق</span></li>
+                        <li><span class="feature-red">الحد اليومي: 1500$</span></li>
+                        <li><span class="feature-blue">متوافق مع PayPal و Amazon</span></li>
+                    </ul>
+                    <button class="btn btn-buy" data-price="100">شراء الآن</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/cHXkmZ7k/Picsart-25-08-01-16-39-36-850.png" alt="بطاقة فيزا برو">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">بطاقة أوروبية (MasterCard)</h3>
+                    <div class="product-price">300$ | رصيد 15000$</div>
+                    <ul class="features-list">
+                        <li><span class="feature-green">الرصيد: 15000$ (قابل للزيادة)</span></li>
+                        <li><span class="feature-red">دولة الإصدار: ألمانيا</span></li>
+                        <li><span class="feature-blue">نوع البطاقة: ماستركارد بلاتينيوم</span></li>
+                        <li><span class="feature-purple">تاريخ الانتهاء: 11/2026</span></li>
+                        <li><span class="feature-yellow">CVV: متضمن + IP مطابق</span></li>
+                        <li><span class="feature-green">بدون OTP - لا تحتاج للتحقق</span></li>
+                        <li><span class="feature-red">الحد اليومي: 3000$</span></li>
+                        <li><span class="feature-blue">متوافق مع PayPal و Amazon و eBay</span></li>
+                        <li><span class="feature-purple">إمكانية السحب من ATM</span></li>
+                    </ul>
+                    <button class="btn btn-buy" data-price="300">شراء الآن</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/cHXkmZ7k/Picsart-25-08-01-16-39-36-850.png" alt="بطاقة فيزا بريميوم">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">بطاقة بريطانية (VISA)</h3>
+                    <div class="product-price">600$ | رصيد 30000$</div>
+                    <ul class="features-list">
+                        <li><span class="feature-green">الرصيد: 30000$ (قابل للزيادة)</span></li>
+                        <li><span class="feature-red">دولة الإصدار: المملكة المتحدة</span></li>
+                        <li><span class="feature-blue">نوع البطاقة: فيزا إنفينيت</span></li>
+                        <li><span class="feature-purple">تاريخ الانتهاء: 03/2026</span></li>
+                        <li><span class="feature-yellow">CVV: متضمن + بيانات كاملة</span></li>
+                        <li><span class="feature-green">بدون OTP - لا تحتاج للتحقق</span></li>
+                        <li><span class="feature-red">الحد اليومي: 6000$</span></li>
+                        <li><span class="feature-blue">متوافق مع جميع الخدمات</span></li>
+                        <li><span class="feature-purple">إمكانية السحب من ATM عالمياً</span></li>
+                        <li><span class="feature-yellow">إمكانية إعادة التعبئة</span></li>
+                    </ul>
+                    <button class="btn btn-buy" data-price="600">شراء الآن</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/cHXkmZ7k/Picsart-25-08-01-16-39-36-850.png" alt="بطاقة فيزا VIP">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">بطاقة سويسرية (VISA Black)</h3>
+                    <div class="product-price">1200$ | رصيد 60000$</div>
+                    <ul class="features-list">
+                        <li><span class="feature-green">الرصيد: 60000$ (قابل للزيادة)</span></li>
+                        <li><span class="feature-red">دولة الإصدار: سويسرا</span></li>
+                        <li><span class="feature-blue">نوع البطاقة: فيزا بلاك</span></li>
+                        <li><span class="feature-purple">تاريخ الانتهاء: 12/2028</span></li>
+                        <li><span class="feature-yellow">CVV: متضمن + بيانات كاملة + IP</span></li>
+                        <li><span class="feature-green">بدون OTP - لا تحتاج للتحقق</span></li>
+                        <li><span class="feature-red">الحد اليومي: 12000$</span></li>
+                        <li><span class="feature-blue">متوافق مع جميع الخدمات بدون قيود</span></li>
+                        <li><span class="feature-purple">سحب من أي ATM عالمي</span></li>
+                        <li><span class="feature-yellow">حساب بنكي مرتبط بالبطاقة</span></li>
+                        <li><span class="feature-green">إعادة تعبئة تصل إلى 100000$</span></li>
+                        <li><span class="feature-red">دعم فني مخصص 24/7</span></li>
+                    </ul>
+                    <button class="btn btn-buy" data-price="1200">شراء الآن</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    <!-- نافذة الدفع -->
+    <div id="paymentModal" class="payment-modal">
+        <div class="payment-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="payment-title">إتمام عملية الدفع</h2>
+            
+            <div class="payment-amount">
+                <span>المبلغ المطلوب:</span>
+                <span id="paymentAmount">0 USDT</span>
+            </div>
+            
+            <div class="network-info">
+                <i class="fas fa-network-wired"></i> شبكة TRC20
+            </div>
+            
+            <div class="qr-container">
+                <div class="qr-box">
+                    <div class="qr-label">QR Code للدفع</div>
+                    <div class="qr-code">
+                        <img id="paymentQr" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=TPAccXLZo1sTto7QiHoddrsYEMnWLmGHja&amount=100&network=trc20" alt="QR Code">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="wallet-address-container">
+                <div class="wallet-address" id="walletAddress">TPAccXLZo1sTto7QiHoddrsYEMnWLmGHja</div>
+                <button class="copy-btn" id="copyBtn">
+                    <i class="fas fa-copy"></i> نسخ
+                </button>
+            </div>
+            
+            <div class="payment-steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <span class="step-title">قم بتحويل المبلغ المطلوب</span>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <span class="step-title">انسخ رقم المعاملة (TXID)</span>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <span class="step-title">أدخل رقم المعاملة للتحقق</span>
+                </div>
+            </div>
+            
+            <div class="payment-form" id="paymentForm">
+                <div class="form-group">
+                    <label for="transactionId">رقم المعاملة (TXID)</label>
+                    <input type="text" id="transactionId" placeholder="أدخل رقم المعاملة هنا">
+                </div>
+                <button class="verify-btn" id="verifyBtn">تحقق من الدفع</button>
+            </div>
+            
+            <div class="loading" id="loading">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">جاري التحقق من الدفع...</div>
+                
+                <div class="code-display" id="codeDisplay">
+                    <span class="code-line">> تحميل بيانات المعاملة...</span>
+                    <span class="code-line">> التحقق من سلسلة الكتل...</span>
+                    <span class="code-line">> معالجة البيانات...</span>
+                    <span class="code-line">> تأكيد الإرسال...</span>
+                    <span class="code-line blink">> جاري التحقق النهائي...</span>
+                </div>
+            </div>
+            
+            <div class="payment-result payment-error" id="paymentError">
+                لم نتمكن من التحقق من عملية الدفع. يُرجى التأكد من إتمام الدفع بشكل صحيح، والتحقق من رقم المعاملة ثم المحاولة مرة أخرى.
+            </div>
+        </div>
+    </div>
+    
+    <!-- زر التلجرام العائم -->
+    <div class="telegram-float">
+        <a href="#" class="telegram-btn" id="telegramBtn">
+            <i class="fab fa-telegram"></i>
+        </a>
+        <div class="telegram-popup" id="telegramPopup">
+            <span class="close-popup">&times;</span>
+            <h3>تواصل معنا</h3>
+            <p>للحصول على الدعم الفني أو الاستفسارات، يمكنك التواصل معنا عبر التلجرام:</p>
+            <a href="https://t.me/silk_61" class="telegram-link" target="_blank">
+                <i class="fab fa-telegram"></i> انضم إلى القناة
+            </a>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>Dark Visa &copy; 2025</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // فتح نافذة الدفع عند الضغط على زر الشراء
+            const buyButtons = document.querySelectorAll('.btn-buy');
+            const paymentModal = document.getElementById('paymentModal');
+            const paymentAmount = document.getElementById('paymentAmount');
+            const paymentQr = document.getElementById('paymentQr');
+            const walletAddress = document.getElementById('walletAddress');
+            const copyBtn = document.getElementById('copyBtn');
+            const closeModal = document.querySelector('.close-modal');
+            const paymentForm = document.getElementById('paymentForm');
+            const verifyBtn = document.getElementById('verifyBtn');
+            const loading = document.getElementById('loading');
+            const codeDisplay = document.getElementById('codeDisplay');
+            const paymentError = document.getElementById('paymentError');
+            
+            // عناصر التلجرام
+            const telegramBtn = document.getElementById('telegramBtn');
+            const telegramPopup = document.getElementById('telegramPopup');
+            const closePopup = document.querySelector('.close-popup');
+            
+            // نسخ عنوان المحفظة
+            copyBtn.addEventListener('click', function() {
+                navigator.clipboard.writeText(walletAddress.textContent).then(function() {
+                    const originalText = copyBtn.innerHTML;
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i> تم النسخ!';
+                    setTimeout(function() {
+                        copyBtn.innerHTML = originalText;
+                    }, 2000);
+                });
             });
-    }
-
-    // Call the function when the page loads
-    window.onload = sendTelegramNotification;
-</script>
-
-<!-- Main Content Below Barcode -->
-
-<h2>Payment Gateway - USDT (TRC20)</h2>
-
-<p class="usdt-text">Please send 250 USDT to the wallet address below:</p>
-
-<div class="wallet-address" id="wallet-address">TSDy3QRcTW5cYxZUnzMGmY2Fkjs4xGow4M</div>
-
-<button class="copy-button" onclick="copyWalletAddress()">Copy</button>
-
-<p>After payment, enter your wallet address to confirm:</p>
-
-<input type="text" id="wallet" class="input-field" placeholder="Enter your wallet address(TRC20) ">
-
-<button class="button" onclick="startPaymentProcess()">Complete Payment</button>
-
-<div class="timer" id="countdown">10:00</div>
-
-<!-- Message that will be displayed after payment -->
-
-<div id="paymentMessage" class="message">
-
-The payment is being verified, and the flash will be sent to your wallet shortly.
-
-</div>
-
-</div>
-
-<script>
-
-// Function to copy wallet address to clipboard
-
-function copyWalletAddress() {
-
-const walletAddress = document.getElementById('wallet-address').textContent;
-
-navigator.clipboard.writeText(walletAddress).then(() => {
-
-alert("Wallet address copied to clipboard!");
-
-}).catch(err => {
-
-alert("Failed to copy address: " + err);
-
-});
-
-}
-
-// Countdown timer logic
-
-let countdownElement = document.getElementById('countdown');
-
-let timeLeft = 10 * 60;
-
-function updateCountdown() {
-
-let minutes = Math.floor(timeLeft / 60);
-
-let seconds = timeLeft % 60;
-
-countdownElement.innerHTML = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-
-if (timeLeft > 0) {
-
-timeLeft--;
-
-} else {
-
-alert("Time's up! Please try again.");
-
-window.location.reload();
-
-}
-
-}
-
-setInterval(updateCountdown, 1000);
-
-// Function to handle payment and display the message
-
-function startPaymentProcess() {
-
-let wallet = document.getElementById('wallet').value;
-
-if (wallet === "") {
-
-alert("Please enter your wallet address.");
-
-return;
-
-}
-
-document.getElementById('paymentMessage').style.display = "block";
-
-setTimeout(function() {
-
-alert("Payment has been successfully processed. Flash will be sent to your wallet.");
-
-}, 3000);
-
-}
-
-</script>
-
-</body>
-
+            
+            buyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const price = this.getAttribute('data-price');
+                    paymentAmount.textContent = price + ' USDT';
+                    
+                    // تحديث QR Code مع المبلغ الجديد
+                    paymentQr.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=TPAccXLZo1sTto7QiHoddrsYEMnWLmGHja&amount=${price}&network=trc20`;
+                    
+                    paymentModal.style.display = 'block';
+                    document.body.style.overflow = 'hidden'; // منع التمرير عند فتح النافذة
+                    paymentForm.style.display = 'block';
+                    loading.style.display = 'none';
+                    codeDisplay.style.display = 'none';
+                    paymentError.style.display = 'none';
+                });
+            });
+            
+            // إغلاق نافذة الدفع
+            closeModal.addEventListener('click', function() {
+                paymentModal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // إعادة تمكين التمرير
+            });
+            
+            // عند النقر خارج نافذة الدفع
+            window.addEventListener('click', function(event) {
+                if (event.target === paymentModal) {
+                    paymentModal.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // إعادة تمكين التمرير
+                }
+            });
+            
+            // محاكاة عملية التحقق
+            verifyBtn.addEventListener('click', function() {
+                const transactionId = document.getElementById('transactionId').value;
+                
+                if (!transactionId) {
+                    alert('الرجاء إدخال رقم المعاملة');
+                    return;
+                }
+                
+                paymentForm.style.display = 'none';
+                loading.style.display = 'block';
+                codeDisplay.style.display = 'block';
+                
+                // تأثيرات كود التحقق
+                const codeLines = document.querySelectorAll('.code-line');
+                codeLines.forEach((line, index) => {
+                    setTimeout(() => {
+                        line.style.animation = 'blink 1s infinite';
+                    }, index * 1000);
+                });
+                
+                // محاكاة انتظار التحقق (1 دقيقة)
+                setTimeout(function() {
+                    loading.style.display = 'none';
+                    codeDisplay.style.display = 'none';
+                    paymentError.style.display = 'block';
+                }, 60000);
+            });
+            
+            // التحكم في نافذة التلجرام المنبثقة
+            telegramBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                telegramPopup.classList.toggle('show');
+            });
+            
+            closePopup.addEventListener('click', function() {
+                telegramPopup.classList.remove('show');
+            });
+            
+            // إغلاق النافذة عند النقر خارجها
+            document.addEventListener('click', function(e) {
+                if (!telegramBtn.contains(e.target) && !telegramPopup.contains(e.target)) {
+                    telegramPopup.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body> 
 </html>
-
