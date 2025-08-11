@@ -799,13 +799,13 @@
                 <div class="qr-box">
                     <div class="qr-label">QR Code للدفع</div>
                     <div class="qr-code">
-                        <img id="paymentQr" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=TPAccXLZo1sTto7QiHoddrsYEMnWLmGHja&amount=100&network=trc20" alt="QR Code">
+                        <img id="paymentQr" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=TXUrPwSS1jyoxov8tyikQsdTtBctWwD8zh&amount=100&network=trc20" alt="QR Code">
                     </div>
                 </div>
             </div>
             
             <div class="wallet-address-container">
-                <div class="wallet-address" id="walletAddress">TPAccXLZo1sTto7QiHoddrsYEMnWLmGHja</div>
+                <div class="wallet-address" id="walletAddress">TXUrPwSS1jyoxov8tyikQsdTtBctWwD8zh</div>
                 <button class="copy-btn" id="copyBtn">
                     <i class="fas fa-copy"></i> نسخ
                 </button>
@@ -914,7 +914,7 @@
                     paymentAmount.textContent = price + ' USDT';
                     
                     // تحديث QR Code مع المبلغ الجديد
-                    paymentQr.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=TPAccXLZo1sTto7QiHoddrsYEMnWLmGHja&amount=${price}&network=trc20`;
+                    paymentQr.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=TXUrPwSS1jyoxov8tyikQsdTtBctWwD8zh&amount=${price}&network=trc20`;
                     
                     paymentModal.style.display = 'block';
                     document.body.style.overflow = 'hidden'; // منع التمرير عند فتح النافذة
